@@ -1,0 +1,11 @@
+{"description":"Markup for letters in the CHCA", 
+"softhyphens":true, 
+"smartquotes":true, 
+"language":"en", 
+"headings":[{"tag":"=","prop":"head"}], 
+"paragraph":{"prop":"p"}, 
+"sections":[{"prop":""}], 
+"paraformats":[{"rightTag":">","leftTag":"<","prop":"ps"}],
+"lineformats":[{"rightTag":"]","leftTag":"[","prop":"page"},{"leftTag":"-----","rightTag":"","prop":"divider-single"},{"leftTag":"> ","rightTag":"","prop":"quote"},{"leftTag":"    ","rightTag":"","prop":"line"},{"leftTag":"        ","rightTag":"","prop":"line-indent1"},{"leftTag":"            ","rightTag":"","prop":"line-indent2"},{"leftTag":"                ","rightTag":"","prop":"line-final"},{"rightTag":" #","leftTag":"","prop":"right-indent-1"},{"rightTag":" ##","leftTag":"","prop":"right-indent-2"},{"rightTag":" ###","leftTag":"","prop":"right-indent-3"},{"rightTag":"","leftTag":"# ","prop":"left-indent-1"},{"rightTag":"","leftTag":"## ","prop":"left-indent-2"},{"rightTag":"","leftTag":"### ","prop":"left-indent-3"}], 
+"charformats":[{"tag":"@","prop":"sic"},{"tag":"*","prop":"underlined"},{"tag":"~","prop":"unclear"},{"tag":"|","prop":"firstword"},{"leftTag":"{","rightTag":"}","prop":"addressee"}],
+"globals":[{"seq":"---","rep":"—"},{"seq":"--","rep":"–"},{"seq":" ---","rep":" —"},{"seq":" --","rep":" –"}]}
