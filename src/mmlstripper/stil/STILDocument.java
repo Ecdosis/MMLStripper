@@ -56,4 +56,30 @@ public class STILDocument extends JSONObject
     {
         return this.ranges.size()==0;
     }
+    /**
+     * This is for debugging and can only be called before toJSON
+     * @return the full length of the text covered by the STILDocument
+     */
+    public int getEnd()
+    {
+        JSONObject lastRange = (JSONObject)ranges.get(ranges.size()-1);
+        int lastOffset = ((Number)lastRange.get("offset")).intValue();
+        int lastLen = ((Number)lastRange.get("len")).intValue();
+        return lastOffset+lastLen;
+    }
+    /**
+     * The last range may overflow by one: curtail it to fit the text
+     */
+    public void trimTo( int textLen )
+    {
+        int ccLen = getEnd();
+        if ( ccLen > textLen )
+        {
+            JSONObject lastRange = (JSONObject)ranges.get(ranges.size()-1);
+            int lastLen = ((Number)lastRange.get("len")).intValue();
+            int diff = ccLen-textLen;
+            if ( lastLen-diff > 0 )
+                lastRange.put("len",(lastLen-diff));
+        }
+    }
 }

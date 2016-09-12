@@ -29,4 +29,9 @@ public class LastLineFormat {
     {
         this.range = r;
     }
+    public void addLen( int len )
+    {
+        int oldLen = range.getLen();
+        this.range.put("len",oldLen+len);
+    }
 }

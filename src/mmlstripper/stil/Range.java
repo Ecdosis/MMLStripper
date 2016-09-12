@@ -35,10 +35,6 @@ public class Range extends JSONObject
     {
         this.put("len",len);
     }
-    public void addLen( int len )
-    {
-        this.put("len",getLen()+len);
-    }
     public int getLen()
     {
         if ( this.containsKey("len") )

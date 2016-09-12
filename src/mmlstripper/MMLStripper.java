@@ -122,6 +122,10 @@ public class MMLStripper {
         }
         sortList(charFormats);
     }
+    /**
+     * Read predefined globals into the globals object
+     * @param globals an array of swap-strings (seq, rep)
+     */
     void readGlobals( JSONArray globals )
     {
         for ( int i=0;i<globals.size();i++ )
@@ -137,6 +141,10 @@ public class MMLStripper {
                 ge.append((String)jObj.get("seq"),(String)jObj.get("rep"));
         }
     }
+    /**
+     * Interpret smart uotes as globals
+     * @param on if true add smartquotes as globals
+     */
     void readSmartQuotes( Boolean on )
     {
         if ( on.booleanValue() == true )
@@ -147,6 +155,9 @@ public class MMLStripper {
             }
             else
                 ge.append(" \""," “" );
+            // these are for quotes at line-start
+            ge.append("\000'","‘" );
+            ge.append("\000\"","“" );
             ge.append(" '"," ‘" );
             ge.append("\"","”");
             ge.append("'","’");
@@ -273,6 +284,8 @@ public class MMLStripper {
         if ( ge != null )
         {
             ge.reset();
+            if ( ge.startsWith('\000') )
+                line = '\000'+line;
             int i=0;    // allow for tokens to be pushed back on input
             while ( i < line.length() || ret.pushed != 0 )
             {
@@ -335,10 +348,10 @@ public class MMLStripper {
             }
             if ( noTakers )
                 sb.append(token);
-            // in case char format not terminated properly
-            if ( ret.active && r != null )
-                r.setLen(sb.length()-r.getOffset());
         }
+        // in case char format not terminated properly
+        if ( ret.active && r != null )
+            r.setLen(sb.length()-r.getOffset());
         // reset all charformats at line-end to their initial states
         for ( int i=0;i<charFormats.size();i++ )
             charFormats.get(i).reset();
@@ -376,8 +389,6 @@ public class MMLStripper {
                 else
                     r = llf.range;
                 sb.append( processCharacters(line,offset) );
-                if ( llf.range != null )
-                    llf.range.addLen(sb.length());
                 break;
             }
         }
@@ -387,7 +398,10 @@ public class MMLStripper {
             llf.range = null;
             sb.append( processCharacters(line,offset) );
         }
-        return sb.toString();
+        line = sb.toString().trim();
+        if ( llf.range != null )
+            llf.addLen(line.length());
+        return line;
     }
     /**
      * Process a paragraph
@@ -433,12 +447,12 @@ public class MMLStripper {
                             underline = underline.substring(st.tag.length() );
                         if ( underline.length()==0 )
                         {
-                            // remove underline
+                            // match: remove underline
                             String[] newLines = new String[lines.length-1];
                             for ( int k=0;k<i;k++ )
-                                newLines[k] = lines[k+1];
-                            for ( int m=i,k=i+1;k<lines.length;k++,m++ )
-                                newLines[m] = lines[k];
+                                newLines[k] = lines[k];
+                            for ( int k=i+1;k<lines.length;k++ )
+                                newLines[k] = lines[k-1];
                             lines = newLines;
                             r = new Range( st.prop );
                         }
@@ -469,7 +483,12 @@ public class MMLStripper {
             sb.append(line);
             // restore NL
             if ( i < lines.length-1 )
+            {
                 sb.append("\n");
+                // include trailing NL in format
+                if ( llf.range != null )
+                    llf.addLen(1);
+            }
             offset = paraOffset + sb.length();
         }
         // avoid nesting of paragraph formats
@@ -666,6 +685,8 @@ public class MMLStripper {
         if ( f.getName().endsWith(".md"))
         {
             String text = readFile(f);
+            if ( f.getName().startsWith("02-JUN-1881-PARKES-MARY_HARPUR"))
+                System.out.println("Error");
             parseMML( text );
             String corCodeFileDefault = swapSuffix(f.getName(), "corcode-default.json");
             String corCodeFilePages = swapSuffix(f.getName(), "corcode-pages.json");
@@ -677,6 +698,7 @@ public class MMLStripper {
             File ctDir = new File(textDir,path);
             if ( !ctDir.exists() )
                 ctDir.mkdirs();
+            corcodeDefault.trimTo(cortex.length());
             writeFile( ccDir, corCodeFileDefault, corcodeDefault.toJSON());
             if ( !corcodePages.isEmpty() )
                 writeFile( ccDir, corCodeFilePages, corcodePages.toJSON());

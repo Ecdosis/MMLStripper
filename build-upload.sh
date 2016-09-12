@@ -50,9 +50,9 @@ function make_upload
     fi
     b=${file#./dest/*/*}
     docid="english/harpur/letters/"${b%%.*}$suffix
-    format=TEXT
+    fmt=TEXT
     if [ ! -z $suffix ]; then
-        format=STIL
+        fmt=STIL
     fi
     echo "db.$db.remove({docid:\"$docid\"});">>upload.js
     echo `wrap $db "$docid" "$content" $fmt english/harpur/letters`>>upload.js
@@ -72,4 +72,12 @@ if [ -f upload.js ]; then
 fi
 build_folder $TEXT text.sed cortex
 build_folder $STIL code.sed corcode
+# build dialect file and add to upload.js
+dialect=`build_file dialect-letters.json code.sed`
+echo db.dialects.remove\({docid:\"english/harpur/letters\"}\)\;>>upload.js
+echo `wrap dialects english/harpur/letters "$dialect"`>>upload.js
+corform=`build_file letter.css code.sed`
+echo db.corform.remove\({docid:\"english/harpur/letters\"}\)\;>>upload.js
+echo `wrap corform english/harpur/letters $corform text/css`>>upload.js
+
 

@@ -70,7 +70,10 @@ public class GENode extends HashMap<Character,GENode>
                 GENode value = parent.get(c);
                 if ( value == this )
                 {
-                    return parent.backtrack(c+path);
+                    if ( c == GlobalExchange.LINESTART )
+                        return parent.backtrack(path);
+                    else
+                        return parent.backtrack(c+path);
                 }
             }
             return "!"+path;
