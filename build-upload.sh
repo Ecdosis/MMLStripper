@@ -1,4 +1,5 @@
 #!/bin/bash
+seekdir=$1
 upload_dir=./dest/uploads
 TEXT=./dest/text
 STIL=./dest/stil
@@ -59,10 +60,12 @@ function make_upload
 }
 function build_folder {
     for i in "$1"/*;do
-        if [ -d "$i" ];then
-            build_folder "$i" $2 $3
-        elif [ -f "$i" ]; then
-            make_upload "$i" $2 $3
+        if [[ ( -z $seekdir ) || ( $i =~ .*$seekdir.* ) ]]; then
+            if [ -d "$i" ];then
+                build_folder "$i" $2 $3
+            elif [ -f "$i" ]; then
+                make_upload "$i" $2 $3
+            fi
         fi
     done
 }
@@ -72,12 +75,14 @@ if [ -f upload.js ]; then
 fi
 build_folder $TEXT text.sed cortex
 build_folder $STIL code.sed corcode
-# build dialect file and add to upload.js
-dialect=`build_file dialect-letters.json code.sed`
-echo db.dialects.remove\({docid:\"english/harpur/letters\"}\)\;>>upload.js
-echo `wrap dialects english/harpur/letters "$dialect"`>>upload.js
-corform=`build_file letter.css code.sed`
-echo db.corform.remove\({docid:\"english/harpur/letters\"}\)\;>>upload.js
-echo `wrap corform english/harpur/letters $corform text/css`>>upload.js
+if [ -z $seekdir ]; then
+    # build dialect file and add to upload.js
+    dialect=`build_file dialect-letters.json code.sed`
+    echo db.dialects.remove\({docid:\"english/harpur/letters\"}\)\;>>upload.js
+    echo `wrap dialects english/harpur/letters "$dialect"`>>upload.js
+    corform=`build_file letter.css code.sed`
+    echo db.corform.remove\({docid:\"english/harpur/letters\"}\)\;>>upload.js
+    echo `wrap corform english/harpur/letters $corform text/css`>>upload.js
+fi
 
 

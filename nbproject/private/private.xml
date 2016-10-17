@@ -3,19 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/desmond/NetBeansProjects/MMLStripper/src/mmlstripper/Range.java</file>
             <file>file:/home/desmond/NetBeansProjects/MMLStripper/src/mmlstripper/CharFormat.java</file>
             <file>file:/home/desmond/NetBeansProjects/MMLStripper/src/mmlstripper/MMLException.java</file>
             <file>file:/home/desmond/NetBeansProjects/MMLStripper/src/mmlstripper/DialectKeys.java</file>
+            <file>file:/home/desmond/NetBeansProjects/MMLStripper/src/mmlstripper/stil/STILDocument.java</file>
             <file>file:/home/desmond/NetBeansProjects/MMLStripper/src/mmlstripper/MMLObject.java</file>
             <file>file:/home/desmond/NetBeansProjects/MMLStripper/src/mmlstripper/MatchState.java</file>
             <file>file:/home/desmond/NetBeansProjects/MMLStripper/src/mmlstripper/MMLRet.java</file>
+            <file>file:/home/desmond/NetBeansProjects/MMLStripper/src/mmlstripper/GENode.java</file>
             <file>file:/home/desmond/NetBeansProjects/MMLStripper/src/mmlstripper/ParaFormat.java</file>
             <file>file:/home/desmond/NetBeansProjects/MMLStripper/src/mmlstripper/LastLineFormat.java</file>
             <file>file:/home/desmond/NetBeansProjects/MMLStripper/src/mmlstripper/MMLStripper.java</file>
             <file>file:/home/desmond/NetBeansProjects/MMLStripper/src/mmlstripper/SmartQuotes.java</file>
             <file>file:/home/desmond/NetBeansProjects/MMLStripper/src/mmlstripper/Setext.java</file>
-            <file>file:/home/desmond/NetBeansProjects/MMLStripper/src/mmlstripper/STILDocument.java</file>
+            <file>file:/home/desmond/NetBeansProjects/MMLStripper/src/mmlstripper/stil/Range.java</file>
             <file>file:/home/desmond/NetBeansProjects/MMLStripper/src/mmlstripper/GlobalExchange.java</file>
             <file>file:/home/desmond/NetBeansProjects/MMLStripper/src/mmlstripper/LineFormat.java</file>
         </group>

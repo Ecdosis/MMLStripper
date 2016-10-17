@@ -1,19 +1,23 @@
-span.page{display:none;white-space:normal}
 p.right-indent-1{text-align:right;padding-right:25px;margin-top:0px;margin-bottom:0px;white-space:pre}
 p.right-indent-2{text-align:right;padding-right:50px;margin-top:0px;margin-bottom:0px;white-space:pre}
 p.right-indent-3{text-align:right;padding-right:75px;margin-top:0px;margin-bottom:0px;white-space:pre}
 p.left-indent-1{text-indent:0px;margin-top:0px;margin-bottom:0px}
 p.left-indent-2{text-indent:10px;margin-top:0px;margin-bottom:0px}
 p.left-indent-3{text-indent:20px;margin-top:0px;margin-bottom:0px}
+p.centred{text-align:center;text-indent:0px;white-space:pre}
 p.p{text-indent:20px;margin-top:10px;margin-bottom:10px;white-space:pre;}
 p.addressee{margin-left:0;margin-top:.5em;margin-bottom:.5em;color:lightgrey}
 h3.head{text-align:center;font-weight:bold;font-size:medium}
 div.ps{margin-top:1em;margin-bottom:1em;font-style:italic;white-space:pre}
+span.page{display:none;white-space:normal}
 span.sic{color:grey}
 span.soft-hyphen{display:none}
 span.hard-hyphen{display:inline}
 span.unclear{font:monospace}
 span.underlined{text-decoration:underline}
+span.smallcaps{font-variant: small-caps}
+span.catchword{color:lightgrey;float:right;position:relative;margin-right:1em}
+span.italics{font-style:italic}
 .line,.line-indent1,.line-indent2,.line-final{background-color:transparent;margin-top:0px;margin-bottom:0px;padding:0px;font-family:inherit;font-size:inherit;border:0;line-height:inherit}
 pre.line{margin-left:20px}
 pre.line-indent1{margin-left:40px}

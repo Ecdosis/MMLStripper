@@ -64,7 +64,10 @@ public class STILDocument extends JSONObject
     {
         JSONObject lastRange = (JSONObject)ranges.get(ranges.size()-1);
         int lastOffset = ((Number)lastRange.get("offset")).intValue();
-        int lastLen = ((Number)lastRange.get("len")).intValue();
+        Number value = ((Number)lastRange.get("len"));
+        if ( value == null )
+            System.out.println("null");
+        int lastLen = value.intValue();
         return lastOffset+lastLen;
     }
     /**

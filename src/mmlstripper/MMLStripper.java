@@ -685,7 +685,7 @@ public class MMLStripper {
         if ( f.getName().endsWith(".md"))
         {
             String text = readFile(f);
-            if ( f.getName().startsWith("02-JUN-1881-PARKES-MARY_HARPUR"))
+            if ( f.getName().startsWith("02-DEC-1865-"))
                 System.out.println("Error");
             parseMML( text );
             String corCodeFileDefault = swapSuffix(f.getName(), "corcode-default.json");
